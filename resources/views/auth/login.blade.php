@@ -18,7 +18,7 @@
                                     <input class="form-control  @error('email') is-invalid @enderror" type="text" name="email" placeholder="Enter Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control  @error('password') is-invalid @enderror" type="text" name="password" placeholder="Enter Password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+                                    <input class="form-control  @error('password') is-invalid @enderror" type="password" name="password" placeholder="Enter Password" value="{{ old('password') }}" required autocomplete="password" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-block" type="submit">Login</button>
