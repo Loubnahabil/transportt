@@ -9,12 +9,8 @@
                         <div class="login-right-wrap">
                             <h1>Forgot Password?</h1>
                             <p class="account-subtitle">Enter your email to get a password reset link</p>
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
+                            {{-- message --}}
+                            {!! Toastr::message() !!}
                             <form method="POST" action="/forget-password">
                                 @csrf
                                 <div class="form-group">

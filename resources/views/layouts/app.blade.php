@@ -12,6 +12,10 @@
 	<link rel="stylesheet" href="{{URL::to('assets/css/feathericon.min.css')}}">
 	<link rel="stylesheet" href="{{URL::to('assets/plugins/morris/morris.css')}}">
 	<link rel="stylesheet" href="{{URL::to('assets/css/style.css')}}"> </head>
+	{{-- message toastr --}}
+	<link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
+	<script src="{{ URL::to('assets/js/toastr_jquery.min.js') }}"></script>
+	<script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
 
 <body>
 	@yield('content')

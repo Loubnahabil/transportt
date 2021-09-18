@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="main-wrapper login-body">
         <div class="login-wrapper">
@@ -11,6 +10,8 @@
                     <div class="login-right">
                         <div class="login-right-wrap">
                             <h1>Login</h1>
+                            {{-- message --}}
+                            {!! Toastr::message() !!}
                             <p class="account-subtitle">Access to our dashboard</p>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
