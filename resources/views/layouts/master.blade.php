@@ -96,14 +96,15 @@
 					<div class="dropdown-menu">
 						<div class="user-header">
 							<div class="avatar avatar-sm"> <img src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}" alt="User Image" class="avatar-img rounded-circle"> </div>
-							<div class="user-text">
-								<h6>Soeng Souy</h6>
-								<p class="text-muted mb-0">Administrator</p>
+								<div class="user-text">
+									<h6>Soeng Souy</h6>
+									<p class="text-muted mb-0">Administrator</p>
+								</div>
 							</div>
-						</div>
-						<a class="dropdown-item" href="profile.html">My Profile</a> 
+						<a class="dropdown-item" href="{{ route('profile') }}">My Profile</a> 
 						<a class="dropdown-item" href="settings.html">Account Settings</a> 
-						<a class="dropdown-item" href="{{route('logout')}}">Logout</a> </div>
+						<a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+					</div>
 				</li>
 			</ul>
 			<div class="top-nav-search">
