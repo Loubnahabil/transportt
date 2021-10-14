@@ -13,6 +13,8 @@
 	<link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="{{ URL::to('assets/plugins/morris/morris.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('assets/css/style.css') }}"> </head>
+	<link rel="stylesheet" type="text/css" href="{{ URL::to('assets/css/bootstrap-datetimepicker.min.css') }}">
+	
 	{{-- message toastr --}}
 	<link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
 	<script src="{{ URL::to('assets/js/toastr_jquery.min.js') }}"></script>
@@ -123,7 +125,7 @@
 						<li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
 								<li><a href="{{ route('form/allbooking') }}"> All Booking </a></li>
-								<li><a href="edit-booking.html"> Edit Booking </a></li>
+								<li><a href="{{ route('form/booking/edit') }}"> Edit Booking </a></li>
 								<li><a href="add-booking.html"> Add Booking </a></li>
 							</ul>
 						</li>
@@ -266,9 +268,13 @@
 	<script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
 	<script src="{{ URL::to('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 	<script src="{{ URL::to('assets/plugins/raphael/raphael.min.js') }}"></script>
-	<script src="{{ URL::to('assets/plugins/morris/morris.min.js') }}"></script>
-	<script src="{{ URL::to('assets/js/chart.morris.js') }}"></script>
+	<script src="{{ URL::to('assets/js/moment.min.js') }}"></script>
+	<script src="{{ URL::to('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/script.js') }}"></script>
+	<script src="{{ URL::to('assets/js/moment.min.js') }}"></script>
+
+	@yield('script')
+	
 </body>
 
 </html>
