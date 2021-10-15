@@ -25,7 +25,7 @@ class HomeController extends Controller
     // home page
     public function index()
     {
-        return view('home');
+        return view('dashboard.home');
     }
 
     // profile

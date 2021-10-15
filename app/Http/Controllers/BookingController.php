@@ -11,10 +11,17 @@ class BookingController extends Controller
     {
         return view('formbooking.allbooking');
     }
+
+    // booking add
+    public function bookingAdd()
+    {
+        return view('formbooking.bookingadd');
+    }
     
     // booking edit
     public function bookingEdit()
     {
         return view('formbooking.bookingedit');
     }
+
 }

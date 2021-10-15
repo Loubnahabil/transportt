@@ -59,5 +59,6 @@ Route::post('reset-password', [App\Http\Controllers\Auth\ResetPasswordController
 // ----------------------------- booking -----------------------------//
 Route::get('form/allbooking', [App\Http\Controllers\BookingController::class, 'allbooking'])->middleware('auth')->name('form/allbooking');
 Route::get('form/booking/edit', [App\Http\Controllers\BookingController::class, 'bookingEdit'])->middleware('auth')->name('form/booking/edit');
+Route::get('form/booking/add', [App\Http\Controllers\BookingController::class, 'bookingAdd'])->middleware('auth')->name('form/booking/add');
 
 

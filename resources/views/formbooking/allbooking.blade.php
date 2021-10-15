@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('menu')
+@extends('sidebar.allbooking')
+@endsection
 @section('content')
     {{-- message --}}
     {!! Toastr::message() !!}
@@ -9,7 +12,7 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">Appointments</h4>
-                            <a href="add-booking.html" class="btn btn-primary float-right veiwbutton ">Add Booking</a>
+                            <a href="{{ route('form/booking/add') }}" class="btn btn-primary float-right veiwbutton ">Add Booking</a>
                         </div>
                     </div>
                 </div>

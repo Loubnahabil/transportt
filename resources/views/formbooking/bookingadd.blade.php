@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('menu')
-@extends('sidebar.bookingedit')
+@extends('sidebar.bookingadd')
 @endsection
 @section('content')
     {{-- message --}}
@@ -10,12 +10,14 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title mt-5">Edit Booking</h3> </div>
+                        <h3 class="page-title mt-5">Add Booking</h3>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form>
+            <form action="" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-lg-12">
                         <div class="row formtype">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -113,10 +115,10 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-            <button type="button" class="btn btn-primary buttonedit">Save</button>
+                <button type="submit" class="btn btn-primary buttonedit1">Create Booking</button>
+            </form>
         </div>
     </div>
     
