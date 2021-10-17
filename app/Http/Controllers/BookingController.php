@@ -24,4 +24,21 @@ class BookingController extends Controller
         return view('formbooking.bookingedit');
     }
 
+    // booking save record
+    public function saveRecord(Request $request)
+    {
+        $request->validate([
+            'name'   => 'required|string|max:255',
+            'room_type'     => 'required|string|max:255',
+            'total_members' => 'required|string|max:255',
+            'date' => 'required|string|max:255',
+            'time' => 'required|string|max:255',
+            'arrival_date'  => 'required|string|max:255',
+            'depature_date' => 'required|string|max:255',
+            'email'      => 'required|string|max:255',
+            'fileupload' => 'required|file',
+            'message'    => 'required|string|max:255',
+        ]);
+    }
+
 }

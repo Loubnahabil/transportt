@@ -61,4 +61,6 @@ Route::get('form/allbooking', [App\Http\Controllers\BookingController::class, 'a
 Route::get('form/booking/edit', [App\Http\Controllers\BookingController::class, 'bookingEdit'])->middleware('auth')->name('form/booking/edit');
 Route::get('form/booking/add', [App\Http\Controllers\BookingController::class, 'bookingAdd'])->middleware('auth')->name('form/booking/add');
 
+Route::post('form/booking/save', [App\Http\Controllers\BookingController::class, 'saveRecord'])->middleware('auth')->name('form/booking/save');
+
 
