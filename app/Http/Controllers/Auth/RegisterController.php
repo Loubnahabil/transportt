@@ -16,15 +16,16 @@ class RegisterController extends Controller
 {
     public function register()
     {
-        $role = DB::table('role_type_users')->get();
-        return view('auth.register',compact('role'));
+        // $role = DB::table('role_type_users')->get();
+        // return view('auth.register',compact('role'));
+        return view('auth.register');
     }
     public function storeUser(Request $request)
     {
         $request->validate([
             'name'      => 'required|string|max:255',
             'email'     => 'required|string|email|max:255|unique:users',
-            'role_name' => 'required|string|max:255',
+            // 'role_name' => 'required|string|max:255',
             'password'  => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required',
         ]);

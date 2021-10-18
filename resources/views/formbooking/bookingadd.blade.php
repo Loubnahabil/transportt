@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('form/booking/save') }}" method="POST">
+            <form action="{{ route('form/booking/save') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
@@ -24,8 +24,8 @@
                                     <label>Name</label>
                                     <select class="form-control @error('name') is-invalid @enderror" id="sel1" name="name" value="{{ old('name') }}">
                                         <option selected disabled> --Select Name-- </option>
-                                        <option value="">Jennifer Robinson</option>
-                                        <option value="">Terry Baker</option>
+                                        <option value="Soeng Souy">Soeng Souy</option>
+                                        <option value="Chan Tha">Chan Tha</option>
                                     </select>
                                 </div>
                             </div>
@@ -34,25 +34,25 @@
                                     <label>Room Type</label>
                                     <select class="form-control @error('room_type') is-invalid @enderror" id="sel2" name="room_type">
                                         <option selected disabled> --Select Room Type-- </option>
-                                        <option value="">Single</option>
-                                        <option value="">Double</option>
-                                        <option value="">Quad</option>
-                                        <option value="">King</option>
-                                        <option value="">Suite</option>
-                                        <option value="">Villa</option>
+                                        <option value="Single">Single</option>
+                                        <option value="Double">Double</option>
+                                        <option value="Quad">Quad</option>
+                                        <option value="King">King</option>
+                                        <option value="Suite">Suite</option>
+                                        <option value="Villa">Villa</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Total Members</label>
-                                    <select class="form-control @error('total_members') is-invalid @enderror" id="sel3" name="total_members">
+                                    <select class="form-control @error('total_numbers') is-invalid @enderror" id="sel3" name="total_numbers">
                                         <option selected disabled> --Select Total Members-- </option>
-                                        <option value="">1</option>
-                                        <option value="">2</option>
-                                        <option value="">3</option>
-                                        <option value="">4</option>
-                                        <option value="">5</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
                                     </select>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="usr1" name="phone_number" value="{{ old('email') }}">
+                                    <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="usr1" name="phone_number" value="{{ old('phone_number') }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -112,7 +112,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Message</label>
-                                    <textarea class="form-control @error('message') is-invalid @enderror" rows="1.5" id="comment" name="message" value="{{ old('message') }}"></textarea>
+                                    <textarea class="form-control @error('message') is-invalid @enderror" rows="1.5" id="message" name="message" value="{{ old('message') }}"></textarea>
                                 </div>
                             </div>
                         </div>
