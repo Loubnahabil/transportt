@@ -24,8 +24,9 @@
                                     <label>Name</label>
                                     <select class="form-control @error('name') is-invalid @enderror" id="sel1" name="name" value="{{ old('name') }}">
                                         <option selected disabled> --Select Name-- </option>
-                                        <option value="Soeng Souy">Soeng Souy</option>
-                                        <option value="Chan Tha">Chan Tha</option>
+                                        @foreach ($user as $users )
+                                        <option value="{{ $users->name }}">{{ $users->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -34,26 +35,16 @@
                                     <label>Room Type</label>
                                     <select class="form-control @error('room_type') is-invalid @enderror" id="sel2" name="room_type">
                                         <option selected disabled> --Select Room Type-- </option>
-                                        <option value="Single">Single</option>
-                                        <option value="Double">Double</option>
-                                        <option value="Quad">Quad</option>
-                                        <option value="King">King</option>
-                                        <option value="Suite">Suite</option>
-                                        <option value="Villa">Villa</option>
+                                        @foreach ($data as $items )
+                                        <option value="{{ $items->room_name }}">{{ $items->room_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Total Members</label>
-                                    <select class="form-control @error('total_numbers') is-invalid @enderror" id="sel3" name="total_numbers">
-                                        <option selected disabled> --Select Total Members-- </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
+                                    <input type="number" class="form-control @error('total_numbers') is-invalid @enderror"name="total_numbers" value="{{ old('total_numbers') }}">
                                 </div>
                             </div>
                             <div class="col-md-4">

@@ -12,13 +12,16 @@ class BookingController extends Controller
     // view page all booking
     public function allbooking()
     {
-        return view('formbooking.allbooking');
+        $allBookings = DB::table('bookings')->get();
+        return view('formbooking.allbooking',compact('allBookings'));
     }
 
     // booking add
     public function bookingAdd()
     {
-        return view('formbooking.bookingadd');
+        $data = DB::table('room_types')->get();
+        $user = DB::table('users')->get();
+        return view('formbooking.bookingadd',compact('data','user'));
     }
     
     // booking edit
@@ -47,12 +50,9 @@ class BookingController extends Controller
         DB::beginTransaction();
         try {
 
-            $folder_name= 'upload';
-            \Storage::disk('local')->makeDirectory($folder_name, 0775, true); //creates directory
-            $destinationPath = $folder_name.'/';
             $photo= $request->fileupload;
-            $file_name = $photo->getClientOriginalName(); //Get file original name                   
-            \Storage::disk('local')->put($folder_name.'/'.$file_name,file_get_contents($photo->getRealPath()));
+            $file_name = rand() . '.' . $photo->getClientOriginalName();
+            $photo->move(public_path('/assets/upload/'), $file_name);
            
             $booking = new Booking;
             $booking->name = $request->name;
@@ -63,7 +63,7 @@ class BookingController extends Controller
             $booking->arrival_date   = $request->arrival_date;
             $booking->depature_date  = $request->depature_date;
             $booking->email       = $request->email;
-            $booking->ph_number       = $request->phone_number;
+            $booking->ph_number   = $request->phone_number;
             $booking->fileupload  = $file_name;
             $booking->message     = $request->message;
             $booking->save();
