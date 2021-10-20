@@ -10,23 +10,26 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title mt-5">Edit Booking</h3> </div>
+                        <h3 class="page-title mt-5">Edit Booking</h3>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form>
+            <form action="" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-lg-12">
                         <div class="row formtype">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Booking ID</label>
-                                    <input class="form-control" type="text" value="BKG-0001"> </div>
+                                    <input class="form-control" type="text" name="bkg_id" value="{{ $bookingEdit->bkg_id }}" readonly>
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <select class="form-control" id="sel1" name="sellist1">
-                                        <option>Select</option>
+                                    <select class="form-control" id="sel1" name="name">
+                                        <option selected value="{{ $bookingEdit->name }}">{{ $bookingEdit->name }}</option>
                                         <option>Jennifer Robinson</option>
                                         <option>Terry Baker</option>
                                     </select>
@@ -35,8 +38,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Room Type</label>
-                                    <select class="form-control" id="sel2" name="sellist1">
-                                        <option>Select</option>
+                                    <select class="form-control" id="sel2" name="room_type">
+                                        <option selected value="{{ $bookingEdit->room_type }}">{{ $bookingEdit->room_type }}</option>
                                         <option>Single</option>
                                         <option>Double</option>
                                         <option>Quad</option>
@@ -49,59 +52,59 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Total Members</label>
-                                    <select class="form-control" id="sel3" name="sellist1">
-                                        <option>Select</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
+                                    <input class="form-control" type="number" name="total_numbers" value="{{ $bookingEdit->total_numbers }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Date</label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker"> </div>
+                                        <input type="text" class="form-control datetimepicker" value="{{ $bookingEdit->date }}">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Time</label>
                                     <div class="time-icon">
-                                        <input type="text" class="form-control" id="datetimepicker3"> </div>
+                                        <input type="text" class="form-control" id="datetimepicker3" value="{{ $bookingEdit->time }}">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Arrival Date</label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker"> </div>
+                                        <input type="text" class="form-control datetimepicker" value="{{ $bookingEdit->arrival_date }}">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Depature Date</label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker"> </div>
+                                        <input type="text" class="form-control datetimepicker" value="{{ $bookingEdit->depature_date }}">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Email ID</label>
-                                    <input type="text" class="form-control" id="usr"> </div>
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" id="usr" value="{{ $bookingEdit->email }}">
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input type="text" class="form-control" id="usr1"> </div>
+                                    <input type="text" class="form-control" id="usr1" value="{{ $bookingEdit->ph_number }}">
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>File Upload</label>
                                     <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                        <input type="file" class="custom-file-input" id="customFile" name="fileupload">
+                                        <input type="text" class="form-control" name="hidden_fileupload" value="{{ $bookingEdit->fileupload }}">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                 </div>
@@ -109,15 +112,23 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Message</label>
-                                    <textarea class="form-control" rows="1.5" id="comment" name="text"></textarea>
+                                    <textarea class="form-control" rows="1.5" id="message" name="message">{{ $bookingEdit->message }}</textarea>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-            <button type="button" class="btn btn-primary buttonedit">Save</button>
+                <button type="submit" class="btn btn-primary buttonedit">Update</button>
+            </form>
         </div>
     </div>
-    
+    @section('script')
+    <script>
+        $(function() {
+            $('#datetimepicker3').datetimepicker({
+                format: 'LT'
+            });
+        });
+        </script>
+    @endsection
 @endsection

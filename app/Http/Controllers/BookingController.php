@@ -25,9 +25,10 @@ class BookingController extends Controller
     }
     
     // booking edit
-    public function bookingEdit()
+    public function bookingEdit($bkg_id)
     {
-        return view('formbooking.bookingedit');
+        $bookingEdit = DB::table('bookings')->where('bkg_id',$bkg_id)->first();
+        return view('formbooking.bookingedit',compact('bookingEdit'));
     }
 
     // booking save record
