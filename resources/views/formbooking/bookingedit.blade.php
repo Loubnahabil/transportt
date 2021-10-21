@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <form action="" method="POST">
+            <form action="{{ route('form/booking/update') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
@@ -28,11 +28,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <select class="form-control" id="sel1" name="name">
-                                        <option selected value="{{ $bookingEdit->name }}">{{ $bookingEdit->name }}</option>
-                                        <option>Jennifer Robinson</option>
-                                        <option>Terry Baker</option>
-                                    </select>
+                                    <input class="form-control" type="text" name="name" value="{{ $bookingEdit->name }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -40,12 +36,12 @@
                                     <label>Room Type</label>
                                     <select class="form-control" id="sel2" name="room_type">
                                         <option selected value="{{ $bookingEdit->room_type }}">{{ $bookingEdit->room_type }}</option>
-                                        <option>Single</option>
-                                        <option>Double</option>
-                                        <option>Quad</option>
-                                        <option>King</option>
-                                        <option>Suite</option>
-                                        <option>Villa</option>
+                                        <option value="Single">Single</option>
+                                        <option value="Double">Double</option>
+                                        <option value="Quad">Quad</option>
+                                        <option value="King">King</option>
+                                        <option value="Suite">Suite</option>
+                                        <option value="Villa">Villa</option>
                                     </select>
                                 </div>
                             </div>
@@ -59,7 +55,7 @@
                                 <div class="form-group">
                                     <label>Date</label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker" value="{{ $bookingEdit->date }}">
+                                        <input type="text" class="form-control datetimepicker" name="date" value="{{ $bookingEdit->date }}">
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +63,7 @@
                                 <div class="form-group">
                                     <label>Time</label>
                                     <div class="time-icon">
-                                        <input type="text" class="form-control" id="datetimepicker3" value="{{ $bookingEdit->time }}">
+                                        <input type="text" class="form-control" id="datetimepicker3" name="time" value="{{ $bookingEdit->time }}">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +71,7 @@
                                 <div class="form-group">
                                     <label>Arrival Date</label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker" value="{{ $bookingEdit->arrival_date }}">
+                                        <input type="text" class="form-control datetimepicker" name="arrival_date" value="{{ $bookingEdit->arrival_date }}">
                                     </div>
                                 </div>
                             </div>
@@ -83,20 +79,20 @@
                                 <div class="form-group">
                                     <label>Depature Date</label>
                                     <div class="cal-icon">
-                                        <input type="text" class="form-control datetimepicker" value="{{ $bookingEdit->depature_date }}">
+                                        <input type="text" class="form-control datetimepicker" name="depature_date" value="{{ $bookingEdit->depature_date }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" id="usr" value="{{ $bookingEdit->email }}">
+                                    <input type="text" class="form-control" id="email" name="email" value="{{ $bookingEdit->email }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Phone Number</label>
-                                    <input type="text" class="form-control" id="usr1" value="{{ $bookingEdit->ph_number }}">
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $bookingEdit->ph_number }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
