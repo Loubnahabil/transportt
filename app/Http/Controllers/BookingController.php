@@ -52,7 +52,7 @@ class BookingController extends Controller
         try {
 
             $photo= $request->fileupload;
-            $file_name = $photo->getClientOriginalName();
+            $file_name = rand() . '.' .$photo->getClientOriginalName();
             $photo->move(public_path('/assets/upload/'), $file_name);
            
             $booking = new Booking;
@@ -87,13 +87,10 @@ class BookingController extends Controller
         try {
 
             if (!empty($request->fileupload)) {
-
                 $photo = $request->fileupload;
-                $file_name = $photo->getClientOriginalExtension();
+                $file_name = rand() . '.' . $photo->getClientOriginalExtension();
                 $photo->move(public_path('/assets/upload/'), $file_name);
-
             } else {
-
                 $file_name = $request->hidden_fileupload;
             }
 

@@ -3,6 +3,26 @@
 @extends('sidebar.bookingedit')
 @endsection
 @section('content')
+    <style>
+        .avatar {
+            background-color: #aaa;
+            border-radius: 50%;
+            color: #fff;
+            display: inline-block;
+            font-weight: 500;
+            height: 38px;
+            line-height: 38px;
+            margin: -38px 10px 0 0;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            vertical-align: middle;
+            width: 38px;
+            position: relative;
+            white-space: nowrap;
+            z-index: 2;
+        }
+    </style>
     {{-- message --}}
     {!! Toastr::message() !!}
     <div class="page-wrapper">
@@ -14,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('form/booking/update') }}" method="POST">
+            <form action="{{ route('form/booking/update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
@@ -100,7 +120,10 @@
                                     <label>File Upload</label>
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" id="customFile" name="fileupload">
-                                        <input type="text" class="form-control" name="hidden_fileupload" value="{{ $bookingEdit->fileupload }}">
+                                        <input type="hidden" class="form-control" name="hidden_fileupload" value="{{ $bookingEdit->fileupload }}">
+                                        <a href="profile.html" class="avatar avatar-sm mr-2">
+                                            <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/'.$bookingEdit->fileupload) }}" alt="{{ $bookingEdit->fileupload }}">
+                                        </a>
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                 </div>
