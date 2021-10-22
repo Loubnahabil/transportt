@@ -42,6 +42,8 @@
                                     <tbody>
                                         @foreach ($allBookings as $bookings )
                                         <tr>
+                                            <td hidden class="id">{{ $bookings->id }}</td>
+                                            <td hidden class="fileupload">{{ $bookings->fileupload }}</td>
                                             <td>{{ $bookings->bkg_id }}</td>
                                             <td>
                                                 <h2 class="table-avatar">
@@ -71,7 +73,7 @@
                                                         <a class="dropdown-item" href="{{ url('form/booking/edit/'.$bookings->bkg_id) }}">
                                                             <i class="fas fa-pencil-alt m-r-5"></i> Edit
                                                         </a>
-                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset">
+                                                        <a class="dropdown-item bookingDelete" href="#" data-toggle="modal" data-target="#delete_asset">
                                                             <i class="fas fa-trash-alt m-r-5"></i> Delete
                                                         </a> 
                                                     </div>
@@ -87,17 +89,36 @@
                 </div>
             </div>
         </div>
+        {{-- Model delete --}}
         <div id="delete_asset" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-body text-center"> <img src="{{ URL::to('assets/img/sent.png') }}" alt="" width="50" height="46">
-                        <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
-                        <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                    <form action="{{ route('form/booking/delete') }}" method="POST">
+                        @csrf
+                        <div class="modal-body text-center"> <img src="{{ URL::to('assets/img/sent.png') }}" alt="" width="50" height="46">
+                            <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
+                            <div class="m-t-20">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                                <input class="form-control" type="hidden" id="e_id" name="id" value="">
+                                <input class="form-control" type="hidden" id="e_fileupload" name="fileupload" value="">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+        {{-- End Model delete --}}
     </div>
+    @section('script')
+    {{-- delete model --}}
+    <script>
+        $(document).on('click','.bookingDelete',function()
+        {
+            var _this = $(this).parents('tr');
+            $('#e_id').val(_this.find('.id').text());
+            $('#e_fileupload').val(_this.find('.fileupload').text());
+        });
+    </script>
+    @endsection
 @endsection

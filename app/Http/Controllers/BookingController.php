@@ -71,7 +71,7 @@ class BookingController extends Controller
             
             DB::commit();
             Toastr::success('Create new booking successfully :)','Success');
-            return redirect()->back();
+            return redirect()->route('form/allbooking');
             
         } catch(\Exception $e) {
             DB::rollback();
@@ -81,7 +81,7 @@ class BookingController extends Controller
     }
 
     // update record
-    public function updateRecord( Request $request)
+    public function updateRecord(Request $request)
     {
         DB::beginTransaction();
         try {
@@ -117,6 +117,24 @@ class BookingController extends Controller
         } catch(\Exception $e) {
             DB::rollback();
             Toastr::error('Update booking fail :)','Error');
+            return redirect()->back();
+        }
+    }
+
+    // delete record booking
+    public function deleteRecord(Request $request)
+    {
+        try {
+
+            Booking::destroy($request->id);
+            unlink('assets/upload/'.$request->fileupload);
+            Toastr::success('Booking deleted successfully :)','Success');
+            return redirect()->back();
+        
+        } catch(\Exception $e) {
+
+            DB::rollback();
+            Toastr::error('Booking delete fail :)','Error');
             return redirect()->back();
         }
     }
