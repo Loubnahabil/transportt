@@ -14,7 +14,8 @@
 	<link rel="stylesheet" href="{{ URL::to('assets/plugins/morris/morris.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('assets/css/style.css') }}"> </head>
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('assets/css/bootstrap-datetimepicker.min.css') }}">
-	
+
+
 	{{-- message toastr --}}
 	<link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
 	<script src="{{ URL::to('assets/js/toastr_jquery.min.js') }}"></script>
@@ -129,6 +130,9 @@
 	<script src="{{ URL::to('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/script.js') }}"></script>
 	<script src="{{ URL::to('assets/js/moment.min.js') }}"></script>
+	<script src="{{ URL::to('assets/plugins/morris/morris.min.js') }}"></script>
+	<script src="{{ URL::to('assets/js/chart.morris.js') }}"></script>
+
 
 	@yield('script')
 	
