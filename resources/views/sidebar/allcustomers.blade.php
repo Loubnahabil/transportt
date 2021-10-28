@@ -6,14 +6,14 @@
                 <li class="list-divider"></li>
                 <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a class="active" href="{{ route('form/allbooking') }}"> All Booking </a></li>
+                        <li><a href="{{ route('form/allbooking') }}"> All Booking </a></li>
                         <li><a href="{{ url('form/booking/edit') }}"> Edit Booking </a></li>
                         <li><a href="{{ route('form/booking/add') }}"> Add Booking </a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="{{ route('form/allcustomers/page') }}"> All customers </a></li>
+                        <li><a class="active" href="{{ route('form/allcustomers/page') }}"> All customers </a></li>
                         <li><a href="edit-customer.html"> Edit Customer </a></li>
                         <li><a href="add-customer.html"> Add Customer </a></li>
                     </ul>
