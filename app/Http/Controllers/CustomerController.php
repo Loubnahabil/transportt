@@ -11,4 +11,10 @@ class CustomerController extends Controller
     {
         return view('formcustomers.allcustomers');
     }
+
+    // add Customer
+    public function addCustomer()
+    {
+        return view('formcustomers.addcustomer');
+    }
 }
