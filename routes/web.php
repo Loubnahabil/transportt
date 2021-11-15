@@ -68,3 +68,4 @@ Route::post('form/booking/delete', [App\Http\Controllers\BookingController::clas
 // ----------------------------- customers -----------------------------//
 Route::get('form/allcustomers/page', [App\Http\Controllers\CustomerController::class, 'allCustomers'])->middleware('auth')->name('form/allcustomers/page');
 Route::get('form/addcustomer/page', [App\Http\Controllers\CustomerController::class, 'addCustomer'])->middleware('auth')->name('form/addcustomer/page');
+Route::get('form/editcustomer/page', [App\Http\Controllers\CustomerController::class, 'editCustomer'])->middleware('auth')->name('form/editcustomer/page');
