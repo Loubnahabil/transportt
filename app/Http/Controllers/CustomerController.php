@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Brian2694\Toastr\Facades\Toastr;
 use DB;
 
 class CustomerController extends Controller
@@ -57,7 +58,6 @@ class CustomerController extends Controller
             $customer->ph_number   = $request->phone_number;
             $customer->fileupload  = $file_name;
             $customer->message     = $request->message;
-            dd($customer);
             $customer->save();
             
             DB::commit();
