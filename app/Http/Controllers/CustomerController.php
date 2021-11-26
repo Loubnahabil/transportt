@@ -12,7 +12,8 @@ class CustomerController extends Controller
     // view page all customer
     public function allCustomers()
     {
-        return view('formcustomers.allcustomers');
+        $allCustomers = DB::table('customers')->get();
+        return view('formcustomers.allcustomers',compact('allCustomers'));
     }
 
     // add Customer
