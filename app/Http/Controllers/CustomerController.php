@@ -72,9 +72,51 @@ class CustomerController extends Controller
         }
     }
 
-    // edit customer
-    public function editCustomer()
+    // customer edit
+    public function updateCustomer($bkg_customer_id)
     {
-        return view('formcustomers.editcustomer');
+        $customerEdit = DB::table('customers')->where('bkg_customer_id',$bkg_customer_id)->first();
+        return view('formcustomers.editcustomer',compact('customerEdit'));
     }
+
+    // update record
+    public function updateRecord(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            if (!empty($request->fileupload)) {
+                $photo = $request->fileupload;
+                $file_name = rand() . '.' . $photo->getClientOriginalExtension();
+                $photo->move(public_path('/assets/upload/'), $file_name);
+            } else {
+                $file_name = $request->hidden_fileupload;
+            }
+
+            $update = [
+                'bkg_customer_id' => $request->bkg_customer_id,
+                'name'   => $request->name,
+                'room_type'  => $request->room_type,
+                'total_numbers' => $request->total_numbers,
+                'date'   => $request->date,
+                'time'   => $request->time,
+                'arrival_date'   => $request->arrival_date,
+                'depature_date'  => $request->depature_date,
+                'email'   => $request->email,
+                'ph_number' => $request->phone_number,
+                'fileupload'=> $file_name,
+                'message'   => $request->message,
+            ];
+            Customer::where('bkg_customer_id',$request->bkg_customer_id)->update($update);
+        
+            DB::commit();
+            Toastr::success('Updated customer successfully :)','Success');
+            return redirect()->back();
+        } catch(\Exception $e) {
+            DB::rollback();
+            Toastr::error('Update customer fail :)','Error');
+            return redirect()->back();
+        }
+    }
+
 }
