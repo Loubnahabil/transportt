@@ -118,5 +118,22 @@ class CustomerController extends Controller
             return redirect()->back();
         }
     }
+    // delete record
+    public function deleteRecord(Request $request)
+    {
+        try {
+
+            Customer::destroy($request->id);
+            unlink('assets/upload/'.$request->fileupload);
+            Toastr::success('Customer deleted successfully :)','Success');
+            return redirect()->back();
+        
+        } catch(\Exception $e) {
+
+            DB::rollback();
+            Toastr::error('Customer delete fail :)','Error');
+            return redirect()->back();
+        }
+    }
 
 }
