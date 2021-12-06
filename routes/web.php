@@ -75,3 +75,4 @@ Route::post('form/customer/delete', [App\Http\Controllers\CustomerController::cl
 
 // ----------------------------- rooms -----------------------------//
 Route::get('form/allrooms/page', [App\Http\Controllers\RoomsController::class, 'allrooms'])->middleware('auth')->name('form/allrooms/page');
+Route::get('form/addroom/page', [App\Http\Controllers\RoomsController::class, 'addRoom'])->middleware('auth')->name('form/addroom/page');

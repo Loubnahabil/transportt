@@ -11,4 +11,9 @@ class RoomsController extends Controller
     {
         return view('room.allroom');
     }
+    // add room page
+    public function addRoom()
+    {
+        return view('room.addroom');
+    }
 }

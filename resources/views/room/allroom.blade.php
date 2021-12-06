@@ -12,7 +12,7 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">All Rooms</h4>
-                            <a href="add-room.html" class="btn btn-primary float-right veiwbutton">Add Room</a> 
+                            <a href="{{ route('form/addroom/page') }}" class="btn btn-primary float-right veiwbutton">Add Room</a> 
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="{{ route('form/allrooms/page') }}">All Rooms </a></li>
                         <li><a href="edit-room.html"> Edit Rooms </a></li>
-                        <li><a href="add-room.html"> Add Rooms </a></li>
+                        <li><a href="{{ route('form/addroom/page') }}"> Add Rooms </a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
