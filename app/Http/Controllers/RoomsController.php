@@ -16,4 +16,9 @@ class RoomsController extends Controller
     {
         return view('room.addroom');
     }
+    // edit room
+    public function editRoom()
+    {
+        return view('room.editroom');
+    }
 }
