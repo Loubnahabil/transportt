@@ -17,7 +17,9 @@ class RoomsController extends Controller
     // add room page
     public function addRoom()
     {
-        return view('room.addroom');
+        $data = DB::table('room_types')->get();
+        $user = DB::table('users')->get();
+        return view('room.addroom',compact('user','data'));
     }
     // edit room
     public function editRoom()
@@ -28,10 +30,18 @@ class RoomsController extends Controller
     // save record room
     public function saveRecordRoom(Request $request)
     {
-        // $request->validate([
-        //     ''   => 'required|string|max:255',
-        //     ''     => 'required|string|max:255',
-        // ]);
+        $request->validate([
+            'name'          => 'required|string|max:255',
+            'room_type'     => 'required|string|max:255',
+            'ac_non_ac'     => 'required|string|max:255',
+            'food'          => 'required|string|max:255',
+            'bed_count'     => 'required|string|max:255',
+            'charges_for_cancellation' => 'required|string|max:255',
+            'rent'          => 'required|string|max:255',
+            'phone_number'  => 'required|string|max:255',
+            'fileupload'    => 'required|file',
+            'message'       => 'required|string|max:255',
+        ]);
 
         DB::beginTransaction();
         try {
@@ -51,7 +61,6 @@ class RoomsController extends Controller
             $room->phone_number = $request->phone_number;
             $room->fileupload   = $file_name;
             $room->message      = $request->message;
-            dd($room);
             $room->save();
             
             DB::commit();

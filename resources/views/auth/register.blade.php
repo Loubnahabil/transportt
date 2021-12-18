@@ -14,21 +14,33 @@
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"  placeholder="Enter Name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Enter Email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Enter Email" value="{{ old('email') }}" required autocomplete="off">
                                 </div>
                                 <div class="form-group">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter Password" required autocomplete="new-password">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter Password" required autocomplete="off">
                                 </div>
                                 <div class="form-group">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Confirm Password" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Confirm Password" required autocomplete="off">
                                 </div>
                                 <div class="form-group mb-0">
                                     <button class="btn btn-primary btn-block" type="submit">Register</button>
                                 </div>
                             </form>
-                            <div class="login-or"> <span class="or-line"></span> <span class="span-or">or</span> </div>
-                            <div class="social-login"> <span>Register with</span> <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="google"><i class="fab fa-google"></i></a> </div>
-                            <div class="text-center dont-have">Already have an account? <a href="{{ route('login') }}">Login</a> </div>
+                            <div class="login-or">
+                                <span class="or-line"></span> 
+                                <span class="span-or">or</span> 
+                            </div>
+                            <div class="social-login"> 
+                                <span>Register with</span> 
+                                <a href="#" class="facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="google">
+                                    <i class="fab fa-google"></i></a> 
+                                </div>
+                            <div class="text-center dont-have">Already have an account? 
+                                <a href="{{ route('login') }}">Login</a> 
+                            </div>
                         </div>
                     </div>
                 </div>
