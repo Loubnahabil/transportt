@@ -12,7 +12,8 @@ class RoomsController extends Controller
     // index page
     public function allrooms()
     {
-        return view('room.allroom');
+        $allRooms = DB::table('rooms')->get();
+        return view('room.allroom',compact('allRooms'));
     }
     // add room page
     public function addRoom()
