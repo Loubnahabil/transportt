@@ -74,4 +74,22 @@ class RoomsController extends Controller
             return redirect()->back();
         }
     }
+
+    // delete record
+    public function deleteRecord(Request $request)
+    {
+        try {
+
+            Room::destroy($request->id);
+            unlink('assets/upload/'.$request->fileupload);
+            Toastr::success('Room deleted successfully :)','Success');
+            return redirect()->back();
+        
+        } catch(\Exception $e) {
+
+            DB::rollback();
+            Toastr::error('Room delete fail :)','Error');
+            return redirect()->back();
+        }
+    }
 }

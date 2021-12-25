@@ -78,3 +78,4 @@ Route::get('form/allrooms/page', [App\Http\Controllers\RoomsController::class, '
 Route::get('form/addroom/page', [App\Http\Controllers\RoomsController::class, 'addRoom'])->middleware('auth')->name('form/addroom/page');
 Route::get('form/room/edit', [App\Http\Controllers\RoomsController::class, 'editRoom']);
 Route::post('form/room/save', [App\Http\Controllers\RoomsController::class, 'saveRecordRoom'])->middleware('auth')->name('form/room/save');
+Route::post('form/room/delete', [App\Http\Controllers\RoomsController::class, 'deleteRecord'])->middleware('auth')->name('form/room/delete');
