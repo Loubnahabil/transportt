@@ -68,7 +68,7 @@
                                                         <i class="fas fa-ellipsis-v ellipse_color"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="{{ url('form/customer/edit/'.$rooms->bkg_room_id) }}">
+                                                        <a class="dropdown-item" href="{{ url('form/room/edit/'.$rooms->bkg_room_id) }}">
                                                             <i class="fas fa-pencil-alt m-r-5"></i> Edit
                                                         </a>
                                                         <a class="dropdown-item delete_asset" href="#" data-toggle="modal" data-target="#delete_asset">

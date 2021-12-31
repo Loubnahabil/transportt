@@ -23,9 +23,12 @@ class RoomsController extends Controller
         return view('room.addroom',compact('user','data'));
     }
     // edit room
-    public function editRoom()
+    public function editRoom($bkg_room_id)
     {
-        return view('room.editroom');
+        $roomEdit = DB::table('rooms')->where('bkg_room_id',$bkg_room_id)->first();
+        $data = DB::table('room_types')->get();
+        $user = DB::table('users')->get();
+        return view('room.editroom',compact('user','data','roomEdit'));
     }
 
     // save record room
@@ -71,6 +74,44 @@ class RoomsController extends Controller
         } catch(\Exception $e) {
             DB::rollback();
             Toastr::error('Add Room fail :)','Error');
+            return redirect()->back();
+        }
+    }
+
+    // update record
+    public function updateRecord(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            if (!empty($request->fileupload)) {
+                $photo = $request->fileupload;
+                $file_name = rand() . '.' . $photo->getClientOriginalExtension();
+                $photo->move(public_path('/assets/upload/'), $file_name);
+            } else {
+                $file_name = $request->hidden_fileupload;
+            }
+
+            $update = [
+                'bkg_room_id' => $request->bkg_room_id,
+                'name'   => $request->name,
+                'room_type'  => $request->room_type,
+                'ac_non_ac'  => $request->ac_non_ac,
+                'food'  => $request->food,
+                'bed_count'  => $request->bed_count,
+                'charges_for_cancellation'  => $request->charges_for_cancellation,
+                'phone_number' => $request->phone_number,
+                'fileupload'=> $file_name,
+                'message'   => $request->message,
+            ];
+            Room::where('bkg_room_id',$request->bkg_room_id)->update($update);
+        
+            DB::commit();
+            Toastr::success('Updated room successfully :)','Success');
+            return redirect()->back();
+        } catch(\Exception $e) {
+            DB::rollback();
+            Toastr::error('Update room fail :)','Error');
             return redirect()->back();
         }
     }
