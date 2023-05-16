@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('menu')
-@extends('sidebar.editroom')
-@endsection
+
 @section('content')
     <style>
         .avatar {

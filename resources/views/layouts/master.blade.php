@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="{{ URL::to('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('assets/plugins/fontawesome/css/all.min.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('assets/css/feathericon.min.css') }}">
-	<link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
+	<link rel="stylesheet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="{{ URL::to('assets/plugins/morris/morris.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('assets/css/style.css') }}"> </head>
 	<link rel="stylesheet" type="text/css" href="{{ URL::to('assets/css/bootstrap-datetimepicker.min.css') }}">
@@ -18,8 +18,9 @@
 
 	{{-- message toastr --}}
 	<link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css') }}">
-	<script src="{{ URL::to('assets/js/toastr_jquery.min.js') }}"></script>
+<script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
+	
 
 <body>
 	<div class="main-wrapper">
@@ -117,7 +118,32 @@
 				</form>
 			</div>
 		</div>
-		@yield('menu')
+		<div class="sidebar" id="sidebar">
+			<div class="sidebar-inner slimscroll">
+				<div id="sidebar-menu" class="sidebar-menu">
+					<ul>
+						<li class=""> <a href="{{ route('home') }}"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
+						<li class="list-divider"></li>
+						
+						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
+							<ul class="submenu_class" style="display: none;">
+								<li><a href="{{ route('form/allcustomers/page') }}"> All customers </a></li>
+								<li><a href="{{ url('form/customer/edit/') }}"> Edit Customer </a></li>
+								<li><a href="{{ route('form/addcustomer/page') }}"> Add Customer </a></li>
+							</ul>
+						</li>
+						<li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Rooms </span> <span class="menu-arrow"></span></a>
+							<ul class="submenu_class" style="display: none;">
+								<li><a href="{{ route('form/allrooms/page') }}">All Rooms </a></li>
+								<li><a href="{{ url('form/room/edit') }}"> Edit Rooms </a></li>
+								<li><a href="{{ route('form/addroom/page') }}"> Add Rooms </a></li>
+							</ul>
+						</li>
+					  
+					</ul>
+				</div>
+			</div>
+		</div>
         @yield('content')
 	</div>
 	<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -129,9 +155,10 @@
 	<script src="{{ URL::to('assets/js/moment.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/script.js') }}"></script>
-	<script src="{{ URL::to('assets/js/moment.min.js') }}"></script>
 	<script src="{{ URL::to('assets/plugins/morris/morris.min.js') }}"></script>
 	<script src="{{ URL::to('assets/js/chart.morris.js') }}"></script>
+	
+
 
 
 	@yield('script')

@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('menu')
-@extends('sidebar.allroom')
-@endsection
+
 @section('content')
     {{-- message --}}
     {!! Toastr::message() !!}
