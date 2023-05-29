@@ -10,8 +10,8 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="mt-5">
-                            <h4 class="card-title float-left mt-2">All Rooms</h4>
-                            <a href="{{ route('form/addroom/page') }}" class="btn btn-primary float-right veiwbutton">Add Room</a> 
+                            <h4 class="card-title float-left mt-2">Voyages</h4> 
+                            <a href="{{ route('form/addvoyage/page') }}" class="btn btn-primary float-right veiwbutton">Ajouter Voyage</a> 
                         </div>
                     </div>
                 </div>
@@ -24,42 +24,43 @@
                                 <table class="datatable table table-stripped table table-hover table-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th>Booking ID</th>
-                                            <th>Name</th>
-                                            <th>Room Type</th>
-                                            <th>AC/NON-AC</th>
-                                            <th>Food</th>
-                                            <th>Bed Count</th>
-                                            <th>Charges For cancellation</th>
-                                            <th>Rent</th>
-                                            <th>Ph.Number</th>
-                                            <th>Status</th>
+                                            <th hidden>Id</th>
+                                            <th>Nom voyage</th>
+                                            <th>Vehicules associés</th>
+                                            <th>Chauffeurs associés</th>
+                                            <th>Clients associés</th>
+                                            <th>Marchandises associés</th>
                                             <th class="text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($allRooms as $rooms )
+                                        @foreach ($allVoyages as $voyages )
                                         <tr>
-                                            <td hidden class="id">{{ $rooms->id }}</td>
-                                            <td hidden class="fileupload">{{ $rooms->fileupload }}</td>
-                                            <td>{{ $rooms->bkg_room_id }}</td>
+                                            <td hidden class="id">{{ $voyages->id }}</td>
+                                            <td>{{ $voyages->voyage_name }}</td>
                                             <td>
-                                                <h2 class="table-avatar">
-                                                <a href="profile.html" class="avatar avatar-sm mr-2">
-                                                    <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/upload/'.$rooms->fileupload) }}" alt="{{ $rooms->fileupload }}">
-                                                </a>
-                                                <a href="profile.html">{{ $rooms->name }}<span>{{ $rooms->bkg_room_id }}</span></a>
-                                                </h2>
+                                                @foreach($voyages->vehicules as $vehicule)
+                                                    <a href="{{ url('form/viewvehicule/'.$vehicule->id) }}" target="_blank" style="color: black;">{{ $vehicule->matricule }}</a>
+                                                    @if (!$loop->last), @endif
+                                                @endforeach
                                             </td>
-                                            <td>{{ $rooms->room_type }}</td>
-                                            <td>{{ $rooms->ac_non_ac }}</td>
-                                            <td>{{ $rooms->food }}</td>
-                                            <td>{{ $rooms->bed_count }}</td>
-                                            <td>{{ $rooms->charges_for_cancellation }}</td>
-                                            <td>{{ $rooms->rent }}</td>
-                                            <td>{{ $rooms->phone_number }}</td>
                                             <td>
-                                                <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>
+                                                @foreach($voyages->chauffeurs as $chauffeur)
+                                                    <a href="{{ url('form/viewchauffeur/'.$chauffeur->id) }}" target="_blank" style="color: black;">{{ $chauffeur->Matricule }}</a>
+                                                    @if (!$loop->last), @endif
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach($voyages->clients as $client)
+                                                    <a href="{{ url('form/viewclient/'.$client->id) }}" target="_blank" style="color: black;"> {{ $client->name_society }}</a>
+                                                    @if (!$loop->last), @endif
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach($voyages->marchandises as $marchandise)
+                                                    <a href="{{ url('form/viewmarchandise/'.$marchandise->id) }}" target="_blank" style="color: black;">{{ $marchandise->nature }}</a>
+                                                    @if (!$loop->last), @endif
+                                                @endforeach
                                             </td>
                                             <td class="text-right">
                                                 <div class="dropdown dropdown-action">
@@ -67,12 +68,15 @@
                                                         <i class="fas fa-ellipsis-v ellipse_color"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="{{ url('form/room/edit/'.$rooms->bkg_room_id) }}">
+                                                        <a class="dropdown-item"  href="{{ url('form/voyage/edit/'.$voyages->id) }}">
                                                             <i class="fas fa-pencil-alt m-r-5"></i> Edit
                                                         </a>
-                                                        <a class="dropdown-item delete_asset" href="#" data-toggle="modal" data-target="#delete_asset">
+                                                        <a class="dropdown-item voyageDelete" href="#" data-toggle="modal" data-target="#delete_asset">
                                                             <i class="fas fa-trash-alt m-r-5"></i> Delete
                                                         </a> 
+                                                        <a class="dropdown-item" href="{{ route('form/voyage/view', ['id' => $voyages->id]) }}">
+                                                            <i class="far fa-eye m-r-5"></i> View
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -86,13 +90,13 @@
                 </div>
             </div>
         </div>
-        
+
         {{-- delete model --}}
         <div id="delete_asset" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body text-center">
-                        <form action="{{ route('form/room/delete') }}" method="POST">
+                        <form action="{{ route('form/voyage/delete') }}" method="POST">
                             @csrf
                             <img src="{{ URL::to('assets/img/sent.png') }}" alt="" width="50" height="46">
                             <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
@@ -110,14 +114,14 @@
         {{-- end delete model --}}
     </div>
     @section('script')
-        {{-- delete model --}}
-        <script>
-            $(document).on('click','.delete_asset',function()
-            {
-                var _this = $(this).parents('tr');
-                $('#e_id').val(_this.find('.id').text());
-                $('#e_fileupload').val(_this.find('.fileupload').text());
-            });
-        </script>
+    {{-- delete model --}}
+    <script>
+        $(document).on('click','.voyageDelete',function()
+        {
+            var _this = $(this).parents('tr');
+            $('#e_id').val(_this.find('.id').text());
+            $('#e_fileupload').val(_this.find('.fileupload').text());
+        });
+    </script>
     @endsection
 @endsection

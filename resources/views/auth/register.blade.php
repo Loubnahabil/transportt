@@ -1,50 +1,117 @@
 @extends('layouts.app')
 @section('content')
-    <div class="main-wrapper login-body">
-        <div class="login-wrapper">
-            <div class="container">
-                <div class="loginbox">
-                    <div class="login-left"> <img class="img-fluid" src="assets/img/logo.png" alt="Logo"> </div>
-                    <div class="login-right">
-                        <div class="login-right-wrap">
-                            <h1 class="mb-3">Register</h1>
-                            <form method="POST" action="{{ route('register') }}">
-                                @csrf
-                                <div class="form-group">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"  placeholder="Enter Name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Enter Email" value="{{ old('email') }}" required autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter Password" required autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Confirm Password" required autocomplete="off">
-                                </div>
-                                <div class="form-group mb-0">
-                                    <button class="btn btn-primary btn-block" type="submit">Register</button>
-                                </div>
-                            </form>
-                            <div class="login-or">
-                                <span class="or-line"></span> 
-                                <span class="span-or">or</span> 
-                            </div>
-                            <div class="social-login"> 
-                                <span>Register with</span> 
-                                <a href="#" class="facebook">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="google">
-                                    <i class="fab fa-google"></i></a> 
-                                </div>
-                            <div class="text-center dont-have">Already have an account? 
-                                <a href="{{ route('login') }}">Login</a> 
-                            </div>
-                        </div>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                {{-- <p></p> --}}
+            </div>
+
+            <div class="nav-button">
+
+                <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+                <button class="btn" id="registerBtn" onclick="register()">Register</button>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+        <!----------------------------- Form box ----------------------------------->
+        <div class="form-box">
+
+            <!------------------- login form -------------------------->
+            <div class="login-container" id="login">
+                <div class="top">
+                    <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                    {!! Toastr::message() !!}
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <header>Register</header>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field  form-control  @error('name') is-invalid @enderror"
+                        name="name" placeholder="Enter Name" value="{{ old('name') }}" required autocomplete="name"
+                        autofocus>
+
+                    <i class="fas fa-user white-icon"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field  form-control  @error('email') is-invalid @enderror"
+                        id="email" name="email" placeholder="Username or Email" value="{{ old('email') }}" required
+                        autocomplete="off">
+                    <i class="fas fa-user white-icon"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field form-control  @error('password') is-invalid @enderror"
+                        id="password" name="password" placeholder="Password" required autocomplete="off">
+                    <i class="fas fa-lock white-icon"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field form-control  @error('password') is-invalid @enderror"
+                        name="password_confirmation" placeholder="Confirm Password" required autocomplete="off"
+                        id="password-confirm">
+                    <i class="fas fa-lock white-icon"></i>
+                </div>
+                <div class="input-box">
+                    <input type="submit" class="submit" value="Register">
+                </div>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="login-check">
+                        <label for="login-check"> Remember Me</label>
+                    </div>
+                    <div class="two">
+                        <label><a href="#">Forgot password?</a></label>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endsection
+
+
+            </form>
+            {{-- -------------------------- --}}
+
+
+
+            {{-- <script>
+            function Register() {
+                window.location.href = "/register";
+            }
+        </script> --}}
+            <script>
+                function myMenuFunction() {
+                    var i = document.getElementById("navMenu");
+                    if (i.className === "nav-menu") {
+                        i.className += " responsive";
+                    } else {
+                        i.className = "nav-menu";
+                    }
+                }
+            </script>
+
+            <script>
+                var a = document.getElementById("loginBtn");
+                var b = document.getElementById("registerBtn");
+                var x = document.getElementById("login");
+                var y = document.getElementById("register");
+
+                function login() {
+                    window.location.href = "/login";
+                    x.style.left = "4px";
+                    y.style.right = "-520px";
+                    a.className += " white-btn";
+                    b.className = "btn";
+                    x.style.opacity = 1;
+                    y.style.opacity = 0;
+                }
+
+                function register() {
+                    window.location.href = "/register";
+                    x.style.left = "-510px";
+                    y.style.right = "5px";
+                    a.className = "btn";
+                    b.className += " white-btn";
+                    x.style.opacity = 0;
+                    y.style.opacity = 1;
+
+                }
+            </script>
+        @endsection

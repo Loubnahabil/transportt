@@ -59,6 +59,7 @@ class CustomerController extends Controller
             $customer->ph_number   = $request->phone_number;
             $customer->fileupload  = $file_name;
             $customer->message     = $request->message;
+            
             $customer->save();
             
             DB::commit();

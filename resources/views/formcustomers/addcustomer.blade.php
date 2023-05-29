@@ -9,7 +9,7 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title mt-5">Add Customer</h3>
+                        <h3 class="page-title mt-5">Add vehicule</h3>
                     </div>
                 </div>
             </div>
@@ -112,8 +112,8 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary buttonedit1">Create Customer</button>
+                <button type="submit" class="btn btn-primary buttonedit1">Create Vehicule</button>
             </form>
         </div>
     </div>
-@endsection
+@endsection 
